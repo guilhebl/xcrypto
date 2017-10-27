@@ -1,4 +1,4 @@
-package fileutil
+package xcrypto
 
 import (
 	"crypto/aes"
