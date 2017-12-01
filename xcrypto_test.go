@@ -1,8 +1,8 @@
 package xcrypto
 
 import (
-	"testing"
 	"strings"
+	"testing"
 )
 
 // tests that a string is correctly encrypted/decrypted (when having appropriate lenghts and non-empty)

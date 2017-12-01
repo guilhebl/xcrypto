@@ -9,7 +9,7 @@ import (
 	"io"
 )
 
-// Utility function that formats input string into base64 format and e
+// Utility function that formats input string into base64 format and
 // encrypts it using AES and input key
 func Encrypt(key, text []byte) ([]byte, error) {
 	block, err := aes.NewCipher(key)
