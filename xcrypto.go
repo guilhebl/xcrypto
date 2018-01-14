@@ -3,7 +3,10 @@ package xcrypto
 import (
 	"crypto/aes"
 	"crypto/cipher"
+	"crypto/hmac"
 	"crypto/rand"
+	"crypto/sha1"
+	"crypto/sha256"
 	"encoding/base64"
 	"errors"
 	"io"
@@ -45,4 +48,21 @@ func Decrypt(key, text []byte) ([]byte, error) {
 		return nil, err
 	}
 	return data, nil
+}
+
+// Generates a SHA1 digest string out of input
+func GenerateSHA1(s string) string {
+	hasher := sha1.New()
+	bv := []byte(s)
+	hasher.Write(bv)
+	sha := base64.URLEncoding.EncodeToString(hasher.Sum(nil))
+	return sha
+}
+
+// computes the HMAC SHA 256 digest of message and returns the base64 encoded string result
+func ComputeHmac256(message string, secret string) string {
+	key := []byte(secret)
+	h := hmac.New(sha256.New, key)
+	h.Write([]byte(message))
+	return base64.StdEncoding.EncodeToString(h.Sum(nil))
 }
